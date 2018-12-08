@@ -3,12 +3,14 @@ package model
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/ego008/youdb"
 )
 
 type User struct {
 	Id            uint64 `json:"id"`
 	Name          string `json:"name"`
+	NickName      string `json:"nickname"`
 	Gender        string `json:"gender"`
 	Flag          int    `json:"flag"`
 	Avatar        string `json:"avatar"`
@@ -29,9 +31,10 @@ type User struct {
 }
 
 type UserMini struct {
-	Id     uint64 `json:"id"`
-	Name   string `json:"name"`
-	Avatar string `json:"avatar"`
+	Id       uint64 `json:"id"`
+	Name     string `json:"name"`
+	NickName string `json:"nickname"`
+	Avatar   string `json:"avatar"`
 }
 
 type UserPageInfo struct {

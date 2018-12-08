@@ -3,11 +3,12 @@ package model
 import (
 	"encoding/json"
 	"errors"
-	"github.com/ego008/goyoubbs/util"
-	"github.com/ego008/youdb"
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/ego008/goyoubbs/util"
+	"github.com/ego008/youdb"
 )
 
 type Article struct {
@@ -178,7 +179,7 @@ func ArticleList(db *youdb.DB, cmd, tb, key, score string, limit, tz int) Articl
 			item := ArticleListItem{
 				Id:          article.Id,
 				Uid:         article.Uid,
-				Name:        user.Name,
+				Name:        user.NickName,
 				Avatar:      user.Avatar,
 				Cid:         article.Cid,
 				Cname:       category.Name,
@@ -189,7 +190,7 @@ func ArticleList(db *youdb.DB, cmd, tb, key, score string, limit, tz int) Articl
 				Comments:    article.Comments,
 			}
 			if article.Ruid > 0 {
-				item.Rname = userMap[article.Ruid].Name
+				item.Rname = userMap[article.Ruid].NickName
 			}
 			items = append(items, item)
 			if firstKey == 0 {
@@ -383,7 +384,7 @@ func UserArticleList(db *youdb.DB, cmd, tb, key string, limit, tz int) ArticlePa
 			item := ArticleListItem{
 				Id:          article.Id,
 				Uid:         article.Uid,
-				Name:        user.Name,
+				Name:        user.NickName,
 				Avatar:      user.Avatar,
 				Cid:         article.Cid,
 				Cname:       category.Name,
@@ -394,7 +395,7 @@ func UserArticleList(db *youdb.DB, cmd, tb, key string, limit, tz int) ArticlePa
 				Comments:    article.Comments,
 			}
 			if article.Ruid > 0 {
-				item.Rname = userMap[article.Ruid].Name
+				item.Rname = userMap[article.Ruid].NickName
 			}
 			items = append(items, item)
 			if firstKey == 0 {

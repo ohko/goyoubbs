@@ -13,7 +13,7 @@
     <ul style="margin-left: 30px;padding: 0;">
     {{range $_, $item := .PageInfo.Items}}
     <li style="margin-bottom: 8px;">
-        id:{{$item.Id}} - {{$item.Name}} - flag: {{$item.Flag}}
+        id:{{$item.Id}} - {{$item.NickName}} - {{$item.Name}} - flag: {{$item.Flag}}
         <a href="/member/{{$item.Id}}">查看</a>
         <a href="/admin/user/edit/{{$item.Id}}">编辑</a>
     </li>

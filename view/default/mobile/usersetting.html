@@ -7,7 +7,7 @@
     <table cellpadding="5" cellspacing="8" border="0" width="100%" class="fs12">
         <tbody><tr>
             <td width="120" align="right">用户名</td>
-            <td width="auto" align="left">{{.Uobj.Name}}</td>
+            <td width="auto" align="left">{{.Uobj.NickName}}</td>
         </tr>
         <tr>
             <td width="120" align="right">电子邮件</td>
@@ -55,35 +55,6 @@
     }
 
 </script>
-
-<a name="2"></a>
-<div class="nav-title">设置头像</div>
-<div class="main-box">
-    <form action="/setting#2" enctype="multipart/form-data" method="post">
-    <input type="hidden" name="act" value="avatar" />
-    <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
-    <table cellpadding="5" cellspacing="8" border="0" width="100%" class="fs12">
-        <tbody><tr>
-            <td width="120" align="right">当前头像</td>
-            <td width="auto" align="left">
-                <img id="av24" src="/static/avatar/{{.Uobj.Avatar}}.jpg?t={{.Now}}" class="avatar avatar24" border="0" align="default" auto=""> &nbsp;
-                <img id="av48" src="/static/avatar/{{.Uobj.Avatar}}.jpg?t={{.Now}}" class="avatar avatar48" border="0" align="default" auto=""> &nbsp;
-                <img id="av73" src="/static/avatar/{{.Uobj.Avatar}}.jpg?t={{.Now}}" class="avatar avatar73" border="0" align="default" auto="">
-            </td>
-        </tr>
-        <tr>
-            <td width="120" align="right">选择头像图片</td>
-            <td width="auto" align="left"><input id="avatar" name="avatar" accept="image/*" type="file" /> (最大300K)</td>
-        </tr>
-        <tr>
-            <td width="120" align="right"></td>
-            <td width="auto" align="left"><input id="avatar_submit" type="submit" value="更新头像" name="submit" class="textbtn" /></td>
-        </tr>
-
-        </tbody></table>
-    </form>
-
-</div>
 
 <script>
     $("#avatar_submit").attr("disabled", true);

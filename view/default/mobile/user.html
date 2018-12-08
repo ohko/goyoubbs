@@ -1,13 +1,13 @@
 {{ define "content" }}
 
 <div class="nav-title">
-    <a href="/">{{.SiteCf.Name}}</a> &raquo; 会员：{{.Uobj.Name}}
+    <a href="/">{{.SiteCf.Name}}</a> &raquo; 会员：{{.Uobj.NickName}}
 </div>
 
 <div class="main-box">
-    <div class="member-avatar"><img src="/static/avatar/{{.Uobj.Avatar}}.jpg" alt="{{.Uobj.Name}}" /></div>
+    <div class="member-avatar"><img src="{{.Uobj.Avatar}}" alt="{{.Uobj.NickName}}" onerror="this.src='/static/upload/1.jpg'" /></div>
     <div class="member-detail">
-        <p>会员：<strong>{{.Uobj.Name}}</strong> (第{{.Uobj.Id}}号会员，{{.Uobj.RegTimeFmt}}加入)
+        <p>会员：<strong>{{.Uobj.NickName}}</strong> (第{{.Uobj.Id}}号会员，{{.Uobj.RegTimeFmt}}加入)
             {{if ge .CurrentUser.Flag 99}}
             &nbsp;&nbsp;&nbsp; • ({{.Uobj.Flag}}) <a href="/admin/user/edit/{{.Uobj.Id}}">编辑</a>
             {{end}}
@@ -21,7 +21,7 @@
 
 
 <div class="nav-title">
-    {{.Uobj.Name}} <a href="?act=post">最近发表的帖子</a> | <a href="?act=reply">最近回复的帖子</a>
+    {{.Uobj.NickName}} <a href="?act=post">最近发表的帖子</a> | <a href="?act=reply">最近回复的帖子</a>
 </div>
 
 <div class="main-box home-box-list">
@@ -29,7 +29,7 @@
     {{range $_, $item := .PageInfo.Items}}
     <div class="post-list">
         <div class="item-avatar">
-            <a href="/member/{{$item.Uid}}"><img src="/static/avatar/{{$item.Avatar}}.jpg" alt="{{$item.Name}}" /></a>
+            <a href="/member/{{$item.Uid}}"><img src="{{$item.Avatar}}" alt="{{$item.Name}}" onerror="this.src='/static/upload/1.jpg'" /></a>
         </div>
         <div class="item-content">
             <h1><a href="/t/{{$item.Id}}">{{$item.Title}}</a></h1>

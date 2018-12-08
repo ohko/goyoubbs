@@ -38,13 +38,13 @@ func NewRouter(app *system.Application) *goji.Mux {
 
 	sp.HandleFunc(pat.Get("/login"), h.UserLogin)
 	sp.HandleFunc(pat.Post("/login"), h.UserLoginPost)
-	sp.HandleFunc(pat.Get("/register"), h.UserLogin)
-	sp.HandleFunc(pat.Post("/register"), h.UserLoginPost)
+	// sp.HandleFunc(pat.Get("/register"), h.UserLogin)
+	// sp.HandleFunc(pat.Post("/register"), h.UserLoginPost)
 
-	sp.HandleFunc(pat.Get("/qqlogin"), h.QQOauthHandler)
-	sp.HandleFunc(pat.Get("/oauth/qq/callback"), h.QQOauthCallback)
-	sp.HandleFunc(pat.Get("/wblogin"), h.WeiboOauthHandler)
-	sp.HandleFunc(pat.Get("/oauth/wb/callback"), h.WeiboOauthCallback)
+	// sp.HandleFunc(pat.Get("/qqlogin"), h.QQOauthHandler)
+	// sp.HandleFunc(pat.Get("/oauth/qq/callback"), h.QQOauthCallback)
+	// sp.HandleFunc(pat.Get("/wblogin"), h.WeiboOauthHandler)
+	// sp.HandleFunc(pat.Get("/oauth/wb/callback"), h.WeiboOauthCallback)
 
 	sp.HandleFunc(pat.Post("/content/preview"), h.ContentPreviewPost)
 	sp.HandleFunc(pat.Post("/file/upload"), h.FileUpload)
@@ -61,6 +61,10 @@ func NewRouter(app *system.Application) *goji.Mux {
 	sp.HandleFunc(pat.Post("/admin/category/list"), h.AdminCategoryListPost)
 	sp.HandleFunc(pat.Get("/admin/link/list"), h.AdminLinkList)
 	sp.HandleFunc(pat.Post("/admin/link/list"), h.AdminLinkListPost)
+
+	sp.HandleFunc(pat.Get("/weixin"), h.Weixin)
+	sp.HandleFunc(pat.Get("/MP_verify_u5f2OffVxYWsDSY7.txt"), h.WeixinDomain)
+	sp.HandleFunc(pat.Get("/weixinlogin"), h.WeixinLogin)
 
 	return sp
 }

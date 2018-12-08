@@ -16,7 +16,7 @@
     <div class="post-list">
         <div class="item-avatar">
             <a href="/member/{{$item.Uid}}">
-            <img src="/static/avatar/{{$item.Avatar}}.jpg" alt="{{$item.Name}}" />
+            <img src="{{$item.Avatar}}" alt="{{$item.Name}}" onerror="this.src='/static/upload/1.jpg'" />
             </a></div>
         <div class="item-content">
             <h1><a href="/t/{{$item.Id}}">{{$item.Title}}</a></h1>

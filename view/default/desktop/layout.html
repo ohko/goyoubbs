@@ -71,7 +71,7 @@
         <div class="banner">
 
             {{if .CurrentUser.Id}}
-            <img class="avatar avatar24" src="/static/avatar/{{.CurrentUser.Avatar}}.jpg" alt="{{.CurrentUser.Name}}"/>&nbsp;&nbsp;&nbsp;
+            <img class="avatar avatar24" src="{{.CurrentUser.Avatar}}" alt="{{.CurrentUser.NickName}}" onerror="this.src='/static/upload/1.jpg'"/>&nbsp;&nbsp;&nbsp;
 
             {{if not .CurrentUser.Password }}
                 <!--<a href="/setting#3" style="color:yellow;">设置登录密码</a>&nbsp;&nbsp;&nbsp;-->
@@ -87,7 +87,7 @@
                 <span style="color:yellow;">在等待审核</span>&nbsp;&nbsp;&nbsp;
             {{end}}
 
-            <a href="/member/{{.CurrentUser.Id}}">{{.CurrentUser.Name}}</a>&nbsp;&nbsp;&nbsp;<a href="/setting">设置</a>&nbsp;&nbsp;&nbsp;<a href="/logout">退出</a>
+            <a href="/member/{{.CurrentUser.Id}}">{{.CurrentUser.Name}}</a>&nbsp;&nbsp;&nbsp;<a href="/setting">设置</a>
 
             {{else}}
 
@@ -97,11 +97,9 @@
             {{if .SiteCf.QQClientID}}
             <a href="/qqlogin" rel="nofollow"><img src="/static/img/qq_login_55_24.png" alt="QQ登录" title="用QQ登录"/></a>&nbsp;&nbsp;
             {{end}}
-            <a href="/login" rel="nofollow">登录</a>
             {{if and .SiteCf.WeiboClientID .SiteCf.QQClientID}}
             {{else}}
             {{if not .SiteCf.CloseReg}}
-            &nbsp;&nbsp;<a href="/register" rel="nofollow">注册</a>
             {{end}}
             {{end}}
 
@@ -126,18 +124,6 @@
     </div>
     <!-- main end -->
     <div class="c"></div>
-</div>
-
-<div class="footer-wrap">
-    <div class="footer">
-        <p>&copy; Copyright <a href="/">{{.SiteCf.Name}}</a> • <a rel="nofollow" href="/feed">Atom Feed</a>
-            • <a href="/view?tpl=mobile">手机模式</a>
-        </p>
-        <p>Powered by <a href="https://www.youbbs.org" target="_blank">youBBS </a> - {{.SiteCf.GoVersion}}</p>
-        <p>MD5SUMS: {{.SiteCf.MD5Sums}}</p>
-    </div>
-    <a style="display: none; " rel="nofollow" href="#top" id="go-to-top">▲</a>
-    <!-- footer end -->
 </div>
 
 </body>

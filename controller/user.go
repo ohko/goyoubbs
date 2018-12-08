@@ -2,16 +2,17 @@ package controller
 
 import (
 	"encoding/json"
+	"net/http"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/dchest/captcha"
 	"github.com/ego008/goyoubbs/model"
 	"github.com/ego008/goyoubbs/util"
 	"github.com/ego008/youdb"
 	"github.com/rs/xid"
 	"goji.io/pat"
-	"net/http"
-	"strconv"
-	"strings"
-	"time"
 )
 
 func (h *BaseHandler) UserLogin(w http.ResponseWriter, r *http.Request) {
@@ -301,7 +302,7 @@ func (h *BaseHandler) UserDetail(w http.ResponseWriter, r *http.Request) {
 
 	evn := &pageData{}
 	evn.SiteCf = scf
-	evn.Title = uobj.Name + " - " + scf.Name
+	evn.Title = uobj.NickName + " - " + scf.Name
 	evn.Keywords = uobj.Name
 	evn.Description = uobj.About
 	evn.IsMobile = tpl == "mobile"

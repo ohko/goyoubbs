@@ -29,7 +29,7 @@
                 {{end}}
            </div>
         </div>
-        <div class="detail-avatar"><a href="/member/{{.Aobj.Uid}}"><img src="/static/avatar/{{.Aobj.Avatar}}.jpg" alt="{{.Aobj.Name}}" /></a></div>
+        <div class="detail-avatar"><a href="/member/{{.Aobj.Uid}}"><img src="{{.Aobj.Avatar}}" alt="{{.Aobj.Name}}" onerror="this.src='/static/upload/1.jpg'" /></a></div>
         <div class="c"></div>
     </div>
     <div class="topic-content">
@@ -74,7 +74,7 @@
     <div class="commont-item">
         <div class="commont-avatar">
             <a href="/member/{{$item.Uid}}">
-                <img src="/static/avatar/{{$item.Avatar}}.jpg" alt="{{$item.Name}}" />
+                <img src="{{$item.Avatar}}" alt="{{$item.Name}}" onerror="this.src='/static/upload/1.jpg'" />
             </a>
         </div>
         <div class="commont-data">
@@ -267,7 +267,6 @@
 {{end}}
 
 {{else}}
-<div class="no-comment">请 <a href="/login" rel="nofollow">登录</a> 后发表评论</div>
 {{end}}
 
 

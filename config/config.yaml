@@ -1,21 +1,21 @@
 Main:
-    HttpPort: 8082
+    HttpPort: 8088
     HttpsOn: false
-    Domain: ""
+    Domain: "ohko.cn"
     HttpsPort: 443
     PubDir: "static"
     ViewDir: "view/default"
-    Youdb: "mydata.db"
+    Youdb: "data/mydata.db"
     CookieSecure: false
     CookieHttpOnly: true
     OldSiteDomain: ""
     TLSCrtFile: ""
     TLSKeyFile: ""
 Site:
-    Name: "youBBS"
-    Desc: "Yet another bbs in go"
+    Name: "金茂光明城市"
+    Desc: "拒绝无为无治，重建光明城市"
     AdminEmail: ""
-    MainDomain: "http://127.0.0.1:8082"
+    MainDomain: "https://ohko.cn"
     MainNodeIds: "1,2,3,4,5,6,7,8,9,10"
     TimeZone: 8
     HomeShowNum: 20

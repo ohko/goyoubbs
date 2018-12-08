@@ -4,16 +4,17 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"encoding/json"
-	"github.com/ego008/goyoubbs/model"
-	"github.com/ego008/goyoubbs/util"
-	"github.com/ego008/youdb"
-	"github.com/rs/xid"
-	"goji.io/pat"
 	"html/template"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/ego008/goyoubbs/model"
+	"github.com/ego008/goyoubbs/util"
+	"github.com/ego008/youdb"
+	"github.com/rs/xid"
+	"goji.io/pat"
 )
 
 func (h *BaseHandler) ArticleAdd(w http.ResponseWriter, r *http.Request) {
@@ -484,7 +485,7 @@ func (h *BaseHandler) ArticleDetail(w http.ResponseWriter, r *http.Request) {
 	evn.Aobj = articleForDetail{
 		Article:     aobj,
 		ContentFmt:  template.HTML(util.ContentFmt(db, aobj.Content)),
-		Name:        author.Name,
+		Name:        author.NickName,
 		Avatar:      author.Avatar,
 		Views:       viewsNum,
 		AddTimeFmt:  util.TimeFmt(aobj.AddTime, "2006-01-02 15:04", scf.TimeZone),

@@ -3,9 +3,10 @@ package model
 import (
 	"encoding/json"
 	"errors"
+	"html/template"
+
 	"github.com/ego008/goyoubbs/util"
 	"github.com/ego008/youdb"
-	"html/template"
 )
 
 type Comment struct {
@@ -105,7 +106,7 @@ func CommentList(db *youdb.DB, cmd, tb, key string, limit, tz int) CommentPageIn
 				Id:         citem.Id,
 				Aid:        citem.Aid,
 				Uid:        citem.Uid,
-				Name:       user.Name,
+				Name:       user.NickName,
 				Avatar:     user.Avatar,
 				AddTime:    citem.AddTime,
 				AddTimeFmt: util.TimeFmt(citem.AddTime, "2006-01-02 15:04", tz),
