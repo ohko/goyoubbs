@@ -72,6 +72,7 @@ func (h *BaseHandler) WeixinLogin(w http.ResponseWriter, r *http.Request) {
 	var accessSt stAccessToken
 	var uri string
 	code := r.FormValue("code")
+	act := r.FormValue("act")
 	uri = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + wxAppID + "&secret=" + wxAppSecret + "&code=" + code + "&grant_type=authorization_code"
 	log.Println("au:", uri)
 	bs, _, err := hst.HSRequest("GET", uri, "", "")
@@ -164,5 +165,10 @@ func (h *BaseHandler) WeixinLogin(w http.ResponseWriter, r *http.Request) {
 		db.Hset("user", youdb.I2b(uobj.Id), jb)
 		h.SetCookie(w, "SessionID", strconv.FormatUint(uobj.Id, 10)+":"+sessionid, 365)
 	}
-	http.Redirect(w, r, "/", 302)
+	switch act {
+	case "newpost":
+		http.Redirect(w, r, "https://ohko.cn/newpost/2", 302)
+	default:
+		http.Redirect(w, r, "/", 302)
+	}
 }

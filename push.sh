@@ -24,3 +24,5 @@ rm -rf goyoubbs
 echo ===== 启动远程docker =====
 ssh root@cdeyun.com "docker pull registry.cdeyun.com/hk/goyoubbs && docker rm -fv goyoubbs; docker images |grep '<none>'|awk '{print \$3}'|xargs docker image rm; docker run -d --restart=always --name goyoubbs -v /data/docker-goyoubbs:/data -v /data/docker-goyoubbs-upload:/static/upload -p 8088:8088 registry.cdeyun.com/hk/goyoubbs"
 if [ $? -ne 0 ];then echo "err!";exit 1;fi
+
+# git push -u https://github.com/ohko/goyoubbs.git
