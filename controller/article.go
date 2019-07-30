@@ -603,7 +603,7 @@ func (h *BaseHandler) ArticleDetailPost(w http.ResponseWriter, r *http.Request) 
 			Id:       commentId,
 			Aid:      aobj.Id,
 			Uid:      currentUser.Id,
-			Content:  rec.Content,
+			Content:  strings.Replace(rec.Content, "ohko.cn", "gmcs.lyl.hk", -1),
 			AddTime:  timeStamp,
 			ClientIp: r.Header.Get("X-FORWARDED-FOR"),
 		}
