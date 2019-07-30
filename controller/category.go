@@ -6,9 +6,16 @@ import (
 	"goji.io/pat"
 	"net/http"
 	"strconv"
+	"fmt"
+	"strings"
 )
 
 func (h *BaseHandler) CategoryDetail(w http.ResponseWriter, r *http.Request) {
+	if !strings.Contains(r.UserAgent(), "MicroMessenger") {
+		fmt.Fprint(w, "此服务仅为微信授权后使用")
+		return
+	}
+
 	btn, key, score := r.FormValue("btn"), r.FormValue("key"), r.FormValue("score")
 	if len(key) > 0 {
 		_, err := strconv.ParseUint(key, 10, 64)

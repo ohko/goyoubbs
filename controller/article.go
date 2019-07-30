@@ -369,6 +369,11 @@ func (h *BaseHandler) ArticleHomeList(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *BaseHandler) ArticleDetail(w http.ResponseWriter, r *http.Request) {
+	if !strings.Contains(r.UserAgent(), "MicroMessenger") {
+		fmt.Fprint(w, "此服务仅为微信授权后使用")
+		return
+	}
+	
 	btn, key, score := r.FormValue("btn"), r.FormValue("key"), r.FormValue("score")
 	if len(key) > 0 {
 		_, err := strconv.ParseUint(key, 10, 64)
@@ -488,6 +493,7 @@ func (h *BaseHandler) ArticleDetail(w http.ResponseWriter, r *http.Request) {
 
 	author, _ := model.UserGetById(db, aobj.Uid)
 	viewsNum, _ := db.Hincr("article_views", youdb.I2b(aobj.Id), 1)
+	aobj.Content = strings.Replace(aobj.Content, "https://ohko.cn", "https://gmcs.lyl.hk", -1)
 	evn.Aobj = articleForDetail{
 		Article:     aobj,
 		ContentFmt:  template.HTML(util.ContentFmt(db, aobj.Content)),
@@ -603,7 +609,7 @@ func (h *BaseHandler) ArticleDetailPost(w http.ResponseWriter, r *http.Request) 
 			Id:       commentId,
 			Aid:      aobj.Id,
 			Uid:      currentUser.Id,
-			Content:  strings.Replace(rec.Content, "ohko.cn", "gmcs.lyl.hk", -1),
+			Content:  rec.Content,
 			AddTime:  timeStamp,
 			ClientIp: r.Header.Get("X-FORWARDED-FOR"),
 		}

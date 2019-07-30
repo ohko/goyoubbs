@@ -6,9 +6,15 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"fmt"
 )
 
 func (h *BaseHandler) TagDetail(w http.ResponseWriter, r *http.Request) {
+	if !strings.Contains(r.UserAgent(), "MicroMessenger") {
+		fmt.Fprint(w, "此服务仅为微信授权后使用")
+		return
+	}
+
 	btn, key := r.FormValue("btn"), r.FormValue("key")
 	if len(key) > 0 {
 		_, err := strconv.ParseUint(key, 10, 64)
