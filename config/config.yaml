@@ -1,7 +1,7 @@
 Main:
     HttpPort: 8088
     HttpsOn: false
-    Domain: "ohko.cn"
+    Domain: "gmcs.lyl.hk"
     HttpsPort: 443
     PubDir: "static"
     ViewDir: "view/default"
@@ -15,7 +15,7 @@ Site:
     Name: "金茂光明城市"
     Desc: "拒绝无为无治，重建光明城市"
     AdminEmail: ""
-    MainDomain: "https://ohko.cn"
+    MainDomain: "https://gmcs.lyl.hk"
     MainNodeIds: "1,2,3,4,5,6,7,8,9,10"
     TimeZone: 8
     HomeShowNum: 20

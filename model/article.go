@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ego008/goyoubbs/util"
+	"goyoubbs/util"
 	"github.com/ego008/youdb"
 )
 

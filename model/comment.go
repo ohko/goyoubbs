@@ -5,7 +5,7 @@ import (
 	"errors"
 	"html/template"
 
-	"github.com/ego008/goyoubbs/util"
+	"goyoubbs/util"
 	"github.com/ego008/youdb"
 )
 

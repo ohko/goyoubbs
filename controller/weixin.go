@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ego008/goyoubbs/model"
+	"goyoubbs/model"
 	"github.com/ego008/youdb"
 	"github.com/ohko/hst"
 	"github.com/rs/xid"
@@ -68,6 +68,11 @@ func (h *BaseHandler) WeixinDomain(w http.ResponseWriter, r *http.Request) {
 // => /weixinlogin?code=001XJoar03nWao1zzH8r08bpar0XJoa1&state=STATE
 // 第二步：通过code换取网页授权access_token
 func (h *BaseHandler) WeixinLogin(w http.ResponseWriter, r *http.Request) {
+	if !strings.Contains(r.UserAgent(), "MicroMessenger") {
+		fmt.Fprint(w, "此服务仅为微信授权后使用")
+		return
+	}
+
 	// fmt.Println("WeixinLogin:", r.RequestURI)
 	var accessSt stAccessToken
 	var uri string
@@ -75,7 +80,7 @@ func (h *BaseHandler) WeixinLogin(w http.ResponseWriter, r *http.Request) {
 	act := r.FormValue("act")
 	uri = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + wxAppID + "&secret=" + wxAppSecret + "&code=" + code + "&grant_type=authorization_code"
 	log.Println("au:", uri)
-	bs, _, err := hst.HSRequest("GET", uri, "", "")
+	bs, _, err := hst.Request("GET", uri, "", "", nil)
 	if err != nil {
 		fmt.Fprint(w, err)
 		return
@@ -96,7 +101,7 @@ func (h *BaseHandler) WeixinLogin(w http.ResponseWriter, r *http.Request) {
 
 	var userInfoSt stUserInfo
 	{ // 第四步：拉取用户信息(需scope为 snsapi_userinfo)
-		bs, _, err := hst.HSRequest("GET", "https://api.weixin.qq.com/sns/userinfo?access_token="+accessSt.AccessToken+"&openid="+accessSt.OpenID+"&lang=zh_CN", "", "")
+		bs, _, err := hst.Request("GET", "https://api.weixin.qq.com/sns/userinfo?access_token="+accessSt.AccessToken+"&openid="+accessSt.OpenID+"&lang=zh_CN", "", "", nil)
 		if err != nil {
 			fmt.Fprint(w, err)
 			return
@@ -167,7 +172,7 @@ func (h *BaseHandler) WeixinLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	switch act {
 	case "newpost":
-		http.Redirect(w, r, "https://ohko.cn/newpost/2", 302)
+		http.Redirect(w, r, "https://gmcs.lyl.hk/newpost/2", 302)
 	default:
 		http.Redirect(w, r, "/", 302)
 	}

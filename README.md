@@ -2,6 +2,17 @@
 
 golang 实现的youBBS 官方论坛&示例 https://www.youbbs.org
 
+
+```
+docker pull ohko/goyoubbs
+docker rm -fv goyoubbs
+docker run -d --restart=always --name goyoubbs \
+    -v /data/docker-goyoubbs:/data \
+    -v /data/docker-goyoubbs-upload:/static/upload \
+    -p 8088:8088 \
+    ohko/goyoubbs
+```
+
 ```
 go get github.com/ego008/goyoubbs
 ```

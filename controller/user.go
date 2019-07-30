@@ -6,10 +6,11 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"fmt"
 
 	"github.com/dchest/captcha"
-	"github.com/ego008/goyoubbs/model"
-	"github.com/ego008/goyoubbs/util"
+	"goyoubbs/model"
+	"goyoubbs/util"
 	"github.com/ego008/youdb"
 	"github.com/rs/xid"
 	"goji.io/pat"
@@ -225,6 +226,11 @@ func (h *BaseHandler) UserLogout(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *BaseHandler) UserDetail(w http.ResponseWriter, r *http.Request) {
+	if !strings.Contains(r.UserAgent(), "MicroMessenger") {
+		fmt.Fprint(w, "此服务仅为微信授权后使用")
+		return
+	}
+
 	act, btn, key, score := r.FormValue("act"), r.FormValue("btn"), r.FormValue("key"), r.FormValue("score")
 	if len(key) > 0 {
 		_, err := strconv.ParseUint(key, 10, 64)

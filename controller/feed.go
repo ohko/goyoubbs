@@ -1,12 +1,19 @@
 package controller
 
 import (
-	"github.com/ego008/goyoubbs/model"
+	"goyoubbs/model"
 	"net/http"
+	"fmt"
+	"strings"
 	"text/template"
 )
 
 func (h *BaseHandler) FeedHandler(w http.ResponseWriter, r *http.Request) {
+	if !strings.Contains(r.UserAgent(), "MicroMessenger") {
+		fmt.Fprint(w, "此服务仅为微信授权后使用")
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/atom+xml; charset=utf-8")
 
 	scf := h.App.Cf.Site
