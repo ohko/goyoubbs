@@ -1,17 +1,21 @@
-# goyoubbs
-
-golang 实现的youBBS 官方论坛&示例 https://www.youbbs.org
-
-
+# Docker部署脚本
+> 此系统为高度定制系统，与其他系统不兼容
 ```
 docker pull ohko/goyoubbs
 docker rm -fv goyoubbs
 docker run -d --restart=always --name goyoubbs \
     -v /data/docker-goyoubbs:/data \
     -v /data/docker-goyoubbs-upload:/static/upload \
-    -p 8088:8088 \
+    -p 127.0.0.1:8088:8088 \
     ohko/goyoubbs
 ```
+
+
+# goyoubbs
+
+golang 实现的youBBS 官方论坛&示例 https://www.youbbs.org
+
+
 
 ```
 go get github.com/ego008/goyoubbs
